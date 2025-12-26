@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Identity Vault | SM Digital</title>
+	<link rel="icon" type="image/jpeg" href="images/vault.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body { background-color: #050505; color: white; font-family: 'Outfit', sans-serif; }
+        
+        /* FOLDER CARD STYLES */
+        .folder-card {
+            height: 280px;
+            border-radius: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s ease;
+        }
+        .folder-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #FFD700;
+            box-shadow: 0 20px 50px -10px rgba(0,0,0,0.8);
+        }
+        .folder-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+            position: absolute; inset: 0;
+            display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 2rem;
+        }
+
+        /* IMAGE GRID STYLES (Pinterest Masonry) */
+        .masonry-grid {
+            column-count: 1; column-gap: 1rem;
+        }
+        @media (min-width: 640px) { .masonry-grid { column-count: 2; } }
+        @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
+        
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+            border-radius: 1rem;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-item img { transition: transform 0.5s ease; width: 100%; display: block; }
+        
+        /* LIGHTBOX */
+        #lightbox { transition: opacity 0.3s ease; opacity: 0; pointer-events: none; backdrop-filter: blur(20px); }
+        #lightbox.open { opacity: 1; pointer-events: auto; }
+
+        /* Hide Scrollbar */
+        .hide-scroll::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <nav class="fixed top-0 w-full bg-black/90 backdrop-blur-xl z-50 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition">
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </a>
+            <div class="text-sm font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">
+                SM. GALLERY
+            </div>
+        </div>
+    </nav>
+
+    <div id="folder-view" class="pt-32 pb-20 max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Project <span class="text-yellow-500">Collections.</span></h1>
+            <p class="text-gray-400">Select a folder to view the full gallery.</p>
+        </div>
+        
+        <div id="folders-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+
+    <div id="gallery-view" class="hidden pt-32 pb-20 max-w-7xl mx-auto px-6">
+        <button onclick="showFolders()" class="mb-8 flex items-center gap-2 text-yellow-500 font-bold hover:text-white transition">
+            <i class="fa-solid fa-circle-arrow-left text-2xl"></i> Back to Folders
+        </button>
+        
+        <div class="flex justify-between items-end mb-8 border-b border-white/10 pb-4">
+            <h1 id="gallery-title" class="text-4xl font-bold capitalize">Category Name</h1>
+            <p id="gallery-count" class="text-gray-500 text-sm">0 Items</p>
+        </div>
+
+        <div id="gallery-grid" class="masonry-grid"></div>
+    </div>
+
+    <div id="lightbox" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4" onclick="closeLightbox()">
+        <button class="absolute top-6 right-6 text-white text-4xl hover:text-yellow-500 transition">&times;</button>
+        <img id="lightbox-img" src="" class="max-h-[85vh] max-w-full rounded-lg shadow-2xl border border-white/10">
+    </div>
+
+
+    <script>
+        // 1. THIS IS YOUR DATABASE. 
+        // To add a new folder, just create a new list.
+        // To add images, just paste the link inside the [ ].
+
+        const portfolioData = {
+            
+            "Tech & AI": [
+                // Add your Tech image links here
+                "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80",
+		"images/tech-1.jpg",
+        "images/tech-2.jpg",
+        "images/tech-3.jpg",
+        "images/tech-4.jpg",
+        "images/tech-5.jpg",
+        "images/tech-6.jpg",
+
+            ],
+
+            "Food & Cafe": [
+                // Add your Food image links here
+                "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1493770348161-369560ae357d?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80",
+		"images/food-1.png",
+		"images/food-2.png",
+		"images/food-3.png",
+		"images/food-4.png",
+		"images/food-5.png",
+		"images/food-6.png",
+		"images/food-7.png",		
+		"images/food-8.png",
+
+            ],
+
+            "Luxury Fashion": [
+                // Add your Luxury image links here
+                "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1615655406736-b37c4fabf923?auto=format&fit=crop&w=600&q=80",
+            ],
+
+            "Logo Concepts": [
+                // Your Logo Images
+                "https://images.unsplash.com/photo-1626785774573-4b7993143d2d?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1626785774625-ddcddc3445e9?auto=format&fit=crop&w=600&q=80",
+            ],
+
+            // You can add a new folder easily like this:
+            // "My New Folder": ["image_link_1.jpg", "image_link_2.jpg"], 
+
+        };
+
+        // =========================================================
+        // 🛑 DO NOT TOUCH CODE BELOW THIS LINE (IT IS AUTOMATIC)
+        // =========================================================
+
+        const folderGrid = document.getElementById('folders-grid');
+        const galleryGrid = document.getElementById('gallery-grid');
+        const folderView = document.getElementById('folder-view');
+        const galleryView = document.getElementById('gallery-view');
+
+        // 1. Initialize Folders
+        function initFolders() {
+            folderGrid.innerHTML = '';
+            for (const [category, images] of Object.entries(portfolioData)) {
+                // Use the first image as the cover, or a default black if empty
+                const coverImage = images.length > 0 ? images[0] : 'https://via.placeholder.com/600x400/000000/FFFFFF?text=Empty';
+                
+                const card = document.createElement('div');
+                card.className = 'folder-card group';
+                card.onclick = () => openFolder(category);
+                card.innerHTML = `
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('${coverImage}');"></div>
+                    <div class="folder-overlay">
+                        <div class="flex items-center gap-3 mb-2">
+                            <i class="fa-regular fa-folder-open text-3xl text-yellow-500"></i>
+                            <span class="bg-white/10 backdrop-blur px-3 py-1 rounded-full text-xs font-bold border border-white/10">${images.length} Items</span>
+                        </div>
+                        <h3 class="text-3xl font-bold text-white group-hover:text-yellow-400 transition">${category}</h3>
+                    </div>
+                `;
+                folderGrid.appendChild(card);
+            }
+        }
+
+        // 2. Open A Folder
+        function openFolder(category) {
+            folderView.classList.add('hidden');
+            galleryView.classList.remove('hidden');
+            
+            // Set Header
+            document.getElementById('gallery-title').innerText = category;
+            document.getElementById('gallery-count').innerText = `${portfolioData[category].length} items in collection`;
+
+            // Build Images
+            galleryGrid.innerHTML = '';
+            const images = portfolioData[category];
+
+            // If empty
+            if(images.length === 0) {
+                galleryGrid.innerHTML = '<p class="text-gray-500 col-span-full text-center py-20">No images yet.</p>';
+                return;
+            }
+
+            // Loop through images
+            images.forEach(imgSrc => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item group';
+                item.onclick = () => openLightbox(imgSrc);
+                item.innerHTML = `
+                    <img src="${imgSrc}" loading="lazy" alt="Project Image">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <i class="fa-solid fa-expand text-white text-3xl drop-shadow-lg"></i>
+                    </div>
+                `;
+                galleryGrid.appendChild(item);
+            });
+            window.scrollTo(0,0);
+        }
+
+        // 3. Show Folders (Back button)
+        function showFolders() {
+            galleryView.classList.add('hidden');
+            folderView.classList.remove('hidden');
+        }
+
+        // 4. Lightbox Logic
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lightbox.classList.add('open');
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+        }
+
+        // Start App
+        initFolders();
+    </script>
+</body>
+</html>

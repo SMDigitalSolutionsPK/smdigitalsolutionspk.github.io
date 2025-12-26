@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday | SM Digital</title>
+	<link rel="icon" type="image/jpeg" href="images/gift.jpg">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: 'Inter' for body, 'Dancing Script' for fancy headings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tone.js for music -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #E0E0E0;
+            overflow-x: hidden;
+            
+            /* The "Starry Night" background theme */
+            background: linear-gradient(45deg, #020024, #0c092c, #2a204b, #1b0c2e);
+            background-size: 400% 400%;
+            animation: gradient-animation 25s ease infinite;
+        }
+        
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .font-fancy {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        #star-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        #start-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #020024; /* Match background */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            cursor: pointer;
+            transition: opacity 1s ease-out;
+            color: white;
+        }
+
+        .clickable-star {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #FFD700;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.5);
+            z-index: 20;
+        }
+
+        .clickable-star:hover {
+            transform: scale(1.8);
+            box-shadow: 0 0 25px 10px rgba(255, 215, 0, 0.7);
+        }
+
+        /* Modal styles */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-backdrop.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            background: linear-gradient(to bottom, #0c092c, #2a204b); /* Match bg */
+            border: 1px solid #FFD700;
+            color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        /* Letter modal fix (for scrolling) */
+        #letter-modal .modal-content {
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .letter-content-wrapper {
+            overflow-y: auto;
+            flex-grow: 1;
+            padding-right: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-backdrop.visible .modal-content {
+            transform: scale(1);
+        }
+        
+        /* Typing effect */
+        .letter-content {
+            white-space: pre-wrap;
+            border-right: 2px solid white;
+            animation: blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: white }
+        }
+
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Audio Start Overlay -->
+    <div id="start-overlay">
+        <h2 class="font-fancy text-6xl text-yellow-300 mb-4">Happy Birthday, Shikha!</h2>
+        <p class="text-2xl text-white animate-pulse">Click to begin your surprise...</p>
+    </div>
+
+    <!-- Starry background container -->
+    <div id="star-container"></div>
+
+    <!-- Main content container -->
+    <div class="relative z-10 max-w-5xl mx-auto p-4 md:p-8">
+
+        <!-- HERO SECTION -->
+        <header class="text-center min-h-screen flex flex-col justify-center items-center py-20 relative z-10">
+            <h1 class="font-fancy text-7xl md:text-9xl text-yellow-300 drop-shadow-lg">
+                Happy Birthday,
+            </h1>
+            <h2 class="font-fancy text-8xl md:text-[10rem] text-white drop-shadow-lg mt-4">
+                Shikha!
+            </h2>
+            <p class="text-xl md:text-2xl mt-8 text-gray-200 max-w-2xl">
+                I made this to celebrate you. Even though we're far apart,
+                you're my guiding star.
+            </p>
+            <a href="#constellation" class="mt-12 text-lg text-yellow-300 font-bold animate-bounce">
+                Scroll down to see your constellation &darr;
+            </a>
+        </header>
+
+        <!-- INTERACTIVE CONSTELLATION SECTION -->
+        <section id="constellation" class="py-20 min-h-screen flex flex-col justify-center relative z-10">
+            <h2 class="font-fancy text-6xl md:text-7xl text-center text-yellow-300 mb-8">Our Constellation</h2>
+            <p class="text-center text-xl text-gray-200 mb-16">
+                Click on the stars to reveal a message.
+            </p>
+
+            <div class="relative w-full max-w-lg mx-auto h-[400px]">
+                
+                <!-- Star 1 -->
+                <div id="star1" class="clickable-star" style="top: 10%; left: 20%;"
+                     data-message="A wish for... the day we finally get to meet in person and I can see your smile for real. 😊">
+                </div>
+
+                <!-- Star 2 -->
+                <div id="star2" class="clickable-star" style="top: 30%; left: 50%;"
+                     data-message="A reason why... I love how your kindness brightens up my whole day, even from so far away. ✨">
+                </div>
+                
+                <!-- Star 3 -->
+                <div id="star3" class="clickable-star" style="top: 25%; left: 80%;"
+                     data-message="A dream for... all the adventures we'll have, exploring new places together, side-by-side. ✈️">
+                </div>
+                
+                <!-- Star 4 -->
+                <div id="star4" class="clickable-star" style="top: 60%; left: 10%;"
+                     data-message="A note... just to say that you're the first person I think about in the morning and the last at night. 💖">
+                </div>
+
+                <!-- Star 5 -->
+                <div id="star5" class="clickable-star" style="top: 70%; left: 40%;"
+                     data-message="A promise... to always be here for you, to listen, and to keep building this amazing connection we have. 🤝">
+                </div>
+                
+                <!-- Star 6 -->
+                <div id="star6" class="clickable-star" style="top: 80%; left: 75%;"
+                     data-message="A memory of... that one conversation where we just clicked. I knew right then you were special. 🌟">
+                </div>
+
+                <!-- Simple connecting lines -->
+                <svg class="absolute top-0 left-0 w-full h-full" style="z-index: 10; pointer-events: none;">
+                    <line x1="20.5%" y1="10.5%" x2="50.5%" y2="30.5%" stroke="rgba(255, 215, 0, 0.3)" stroke-width="1" />
+                    <line x1="50.5%" y1="30.5%" x2="80.5%" y2="25.5%" stroke="rgba(255, 215, 0, 0.3)" stroke-width="1" />
+                    <line x1="10.5%" y1="60.5%" x2="40.5%" y2="70.5%" stroke="rgba(255, 215, 0, 0.3)" stroke-width="1" />
+                    <line x1="40.5%" y1="70.5%" x2="75.5%" y2="80.5%" stroke="rgba(255, 215, 0, 0.3)" stroke-width="1" />
+                    <line x1="20.5%" y1="10.5%" x2="10.5%" y2="60.5%" stroke="rgba(255, 215, 0, 0.3)" stroke-width="1" />
+                </svg>
+            </div>
+            
+            <a href="#letter" class="mt-20 text-center text-lg text-yellow-300 font-bold animate-bounce">
+                One more thing... &darr;
+            </a>
+        </section>
+
+        <!-- VIRTUAL LETTER SECTION -->
+        <section id="letter" class="py-20 min-h-screen flex flex-col justify-center items-center text-center relative z-10">
+            <h2 class="font-fancy text-6xl md:text-7xl text-center text-yellow-300 mb-8">A Letter For You</h2>
+            <p class="text-xl text-gray-200 mb-12">I wrote this for your birthday.</p>
+
+            <button id="open-letter-btn" class="bg-yellow-400 text-gray-900 font-bold py-3 px-8 rounded-lg text-xl shadow-lg transition-transform duration-300 hover:scale-105 hover:bg-yellow-300">
+                Click to Read
+            </button>
+        </section>
+
+        <!-- FOOTER MESSAGE -->
+        <footer class="py-20 text-center border-t border-yellow-700/50 relative z-10">
+            <p class="text-2xl text-gray-200">
+                With all my love from a far,
+            </p>
+            <p class="font-fancy text-6xl text-yellow-300 mt-2">
+                Qamber
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- MODALS (Pop-ups) -->
+
+    <!-- Modal for Star Messages -->
+    <div id="star-modal" class="modal-backdrop">
+        <div class="modal-content text-center">
+            <p id="star-modal-message" class="text-2xl font-fancy"></p>
+            <button id="close-star-modal" class="mt-6 bg-yellow-400 text-gray-900 font-bold py-2 px-6 rounded-lg text-lg">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal for the Letter -->
+    <div id="letter-modal" class="modal-backdrop">
+        <div class="modal-content">
+            <h3 class="font-fancy text-4xl text-yellow-300 mb-4">My Dearest Shikha,</h3>
+            
+            <div class="letter-content-wrapper">
+                <p id="letter-content" class="letter-content text-lg" 
+                   data-letter-text="Happy Birthday! 🎂
+
+I wish more than anything that I could be there to celebrate with you today. Since I can't be, I wanted to make something special that would remind you how much you mean to me.
+
+Getting to know you has been the best part of my year. Even with the distance, you make me feel closer and happier than I thought possible.
+
+I am counting down the days until we can finally be together, no screens, just us.
+
+Until then, know that I'm thinking of you. ❤️
+
+With all my love,
+Qamber">
+                </p>
+            </div>
+            
+            <button id="close-letter-modal" class="mt-6 bg-yellow-400 text-gray-900 font-bold py-2 px-6 rounded-lg text-lg">
+                Close
+            </button>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- Animated Starry Background ---
+            const starContainer = document.getElementById('star-container');
+            const numStars = 100;
+
+            for (let i = 0; i < numStars; i++) {
+                let star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = `${Math.random() * 2}px`;
+                star.style.height = star.style.width;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                starContainer.appendChild(star);
+            }
+
+            // --- Star Constellation Modal ---
+            const starModal = document.getElementById('star-modal');
+            const starModalMessage = document.getElementById('star-modal-message');
+            const closeStarModalBtn = document.getElementById('close-star-modal');
+            const clickableStars = document.querySelectorAll('.clickable-star');
+
+            clickableStars.forEach(star => {
+                star.addEventListener('click', () => {
+                    const message = star.getAttribute('data-message');
+                    starModalMessage.textContent = message;
+                    starModal.classList.add('visible');
+                });
+            });
+
+            function closeStarModal() {
+                starModal.classList.remove('visible');
+            }
+            closeStarModalBtn.addEventListener('click', closeStarModal);
+
+            // --- Letter Modal & Typing Effect ---
+            const letterModal = document.getElementById('letter-modal');
+            const openLetterBtn = document.getElementById('open-letter-btn');
+            const closeLetterBtn = document.getElementById('close-letter-modal');
+            const letterContent = document.getElementById('letter-content');
+            const letterText = letterContent.getAttribute('data-letter-text');
+            let letterTypingTimeout; // To control the typing
+
+            function typeLetter() {
+                let i = 0;
+                letterContent.textContent = ''; // Clear content first
+                letterContent.style.borderRight = '2px solid white'; // Show cursor
+
+                function typing() {
+                    if (i < letterText.length) {
+                        letterContent.textContent += letterText.charAt(i);
+                        i++;
+                        letterTypingTimeout = setTimeout(typing, 50); // Adjust typing speed
+                    } else {
+                        letterContent.style.borderRight = 'none'; // Hide cursor when done
+                    }
+                }
+                typing();
+            }
+
+            openLetterBtn.addEventListener('click', () => {
+                letterModal.classList.add('visible');
+                typeLetter(); // Start typing effect
+            });
+
+            function closeLetterModal() {
+                letterModal.classList.remove('visible');
+                clearTimeout(letterTypingTimeout); // Stop the typing
+                letterContent.textContent = ''; // Clear text when closing
+            }
+            closeLetterBtn.addEventListener('click', closeLetterModal);
+
+            // Close modals by clicking backdrop
+            starModal.addEventListener('click', (e) => {
+                if (e.target === starModal) closeStarModal();
+            });
+            letterModal.addEventListener('click', (e) => {
+                if (e.target === letterModal) closeLetterModal();
+            });
+            
+            // === NEW, QUIETER, ROMANTIC MUSIC ===
+            const startOverlay = document.getElementById('start-overlay');
+            
+            startOverlay.addEventListener('click', async () => {
+                await Tone.start(); // This is required by browsers
+                
+                // 1. Create the synth with LOWER volume
+                // A soft, "dreamy" synth sound
+                const synth = new Tone.PolySynth(Tone.Synth, {
+                    oscillator: { type: "triangle8" }, // A soft, gentle wave
+                    envelope: { attack: 0.1, decay: 0.5, sustain: 0.2, release: 2 }, // Slow attack and release
+                    volume: -12 // *** THIS IS THE VOLUME CONTROL. -12dB is much quieter ***
+                }).toDestination();
+
+                // 2. Add reverb and a gentle delay for a spacious, romantic feel
+                const reverb = new Tone.Reverb(5).toDestination(); // 5 seconds of reverb
+                const delay = new Tone.FeedbackDelay("4n", 0.3).toDestination(); // A simple delay
+                synth.chain(delay, reverb);
+                
+                // 3. Define the notes for the loop (a slow, romantic chord progression)
+                const chords = [
+                    ["C4", "E4", "G4"], // C Major
+                    ["G3", "B3", "D4"], // G Major
+                    ["A3", "C4", "E4"], // A Minor
+                    ["F3", "A3", "C4"]  // F Major
+                ];
+                let chordIndex = 0;
+                
+                const loop = new Tone.Loop(time => {
+                    const chord = chords[chordIndex % chords.length];
+                    synth.triggerAttackRelease(chord, "1m", time); // Play one chord per measure
+                    chordIndex++;
+                }, "1m"); // Loop every 1 measure (which is slow at 60bpm)
+                
+                // 4. Set the transport
+                Tone.Transport.bpm.value = 65; // A gentle, slow tempo
+                Tone.Transport.start();
+                loop.start(0);
+                
+                // 5. Fade out the overlay
+                startOverlay.style.opacity = '0';
+                startOverlay.style.pointerEvents = 'none'; // Make it unclickable
+                
+                setTimeout(() => {
+                    startOverlay.remove();
+                }, 1000); // 1s matches the transition duration
+                
+            }, { once: true }); // Make sure this only runs once
+
+        });
+    </script>
+</body>
+</html>
+

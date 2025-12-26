@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SM Digital Solutions </title>
+    <link rel="icon" type="image/jpeg" href="images/logo.png">
+    <meta name="description" content="Hire the #1 Freelance Web Developer in Karachi. Rates start at 2000 PKR.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        dark: '#050505', 
+                        card: '#111111', 
+                        gold: '#FFD700', 
+                        accent: '#3B82F6'
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spin 15s linear infinite',
+                        'marquee': 'marquee 20s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .photo-blend {
+            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+            filter: contrast(1.1) brightness(0.9);
+        }
+        .glow-text { text-shadow: 0 0 30px rgba(255, 215, 0, 0.4); }
+        .glass-stat { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); }
+        /* Hide Scrollbar */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+
+<body class="bg-dark text-white antialiased overflow-x-hidden selection:bg-gold selection:text-black">
+
+    <div class="fixed top-6 left-0 w-full flex justify-center z-50">
+        <nav class="bg-card/90 backdrop-blur-md px-8 py-3 rounded-full border border-white/10 shadow-2xl flex items-center gap-8">
+            <a href="#" class="hover:opacity-80 transition">
+    		<a href="#" class="hover:opacity-80 transition">
+    		     <img src="images/logo.png" alt="SM Digital Solutions" class="h-12 w-12 object-cover rounded-full border-2 border-gold/50 shadow-lg"></a>
+
+            <div class="hidden md:flex gap-6 text-sm font-medium text-gray-400">
+                <a href="#about" class="hover:text-white transition">About</a>
+                <a href="#work" class="hover:text-white transition">Projects</a>
+                <a href="#reviews" class="hover:text-white transition">Reviews</a>
+            </div>
+            <a href="https://wa.me/923188249638" class="bg-gold text-dark px-5 py-2 rounded-full font-bold text-xs hover:bg-white transition animate-pulse">
+                Hire Me
+            </a>
+        </nav>
+    </div>
+
+    <section id="about" class="min-h-screen flex items-center relative pt-20">
+        <div class="absolute top-20 left-10 w-72 h-72 bg-blue-600/10 rounded-full blur-[100px]"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-gold/5 rounded-full blur-[100px]"></div>
+
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="space-y-6 text-center md:text-left order-2 md:order-1">
+                <div class="inline-block px-4 py-1 border border-gold/30 rounded-full bg-gold/5 text-gold text-sm font-mono font-bold">
+                    🚀 Available for Freelance Work
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">
+                    I Build Digital <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold to-orange-500 glow-text" id="typing-text"></span>
+                </h1>
+                <p class="text-gray-400 text-lg max-w-lg mx-auto md:mx-0">
+                    Hi, I'm <b>Mustafa Ali</b>. I combine advanced code with stunning visuals to create digital products that sell.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
+                    <a href="https://wa.me/923188249638" class="px-8 py-4 bg-white text-dark rounded-xl font-bold hover:bg-gold transition shadow-xl flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Start Project
+                    </a>
+                    <a href="#work" class="px-8 py-4 border border-white/10 rounded-xl font-bold hover:bg-white/5 transition">
+                        View Work
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-3 gap-4 pt-8 border-t border-white/5 mt-8">
+                    <div><h3 class="text-3xl font-bold text-white">15+</h3><p class="text-xs text-gray-500 uppercase">Projects</p></div>
+                    <div><h3 class="text-3xl font-bold text-white">100%</h3><p class="text-xs text-gray-500 uppercase">Satisfaction</p></div>
+                    <div><h3 class="text-3xl font-bold text-white">24/7</h3><p class="text-xs text-gray-500 uppercase">Support</p></div>
+                </div>
+			<div class="mt-10 border-t border-white/10 pt-8 text-left relative">
+    
+    <i class="fa-solid fa-quote-left absolute -top-3 left-4 text-4xl text-white/5"></i>
+
+    <h3 class="text-gold font-bold text-lg mb-3 tracking-wide uppercase text-sm">The Man Behind the Code</h3>
+    
+    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+        I am a 17-year-old <strong>Full-Stack Developer</strong> and the Founder of SM Digital Solutions. Currently a student at <span class="text-white border-b border-white/20">Aga Khan Higher Secondary</span>, I started this agency to bridge the gap between "complex coding" and "beautiful design."
+    </p>
+    
+    <p class="text-gray-400 text-sm leading-relaxed">
+        My philosophy is simple: <strong>I don't just deliver files; I deliver businesses.</strong> From the first logo sketch to the final server deployment, I handle every pixel personally to ensure your brand stands out in Karachi's crowded market.
+    </p>
+
+    <div class="mt-6 flex items-center gap-4">
+        <span class="text-2xl text-white font-serif italic" style="font-family: 'Playfair Display', serif;">Syed Mustafa Ali</span>
+        <div class="h-px w-16 bg-gradient-to-r from-gold to-transparent"></div>
+        <span class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Founder</span>
+    </div>
+
+</div>
+            </div>
+
+            <div class="relative flex justify-center order-1 md:order-2">
+                <div class="absolute inset-0 m-auto w-[380px] h-[380px] border border-white/5 rounded-full animate-spin-slow"></div>
+                <div class="absolute inset-0 m-auto w-[350px] h-[350px] border-t border-r border-gold/30 rounded-full animate-spin-slow" style="animation-direction: reverse;"></div>
+                <div class="relative w-80 h-80 rounded-full overflow-hidden border-4 border-card bg-gradient-to-b from-gray-800 to-black shadow-2xl animate-float">
+                    <img src="images/profile.jpg" alt="Syed Mustafa Ali" class="w-full h-full object-cover photo-blend">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10 border-y border-white/5 bg-black overflow-hidden relative">
+        <div class="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-black to-transparent z-10"></div>
+        <div class="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-black to-transparent z-10"></div>
+        
+        <div class="flex whitespace-nowrap animate-marquee gap-12 text-gray-400 font-bold text-lg uppercase tracking-widest items-center">
+            <span><i class="fa-brands fa-html5 text-orange-500"></i> HTML</span>
+            <span><i class="fa-brands fa-css3-alt text-blue-500"></i> CSS</span>
+            <span><i class="fa-brands fa-js text-yellow-400"></i> JavaScript</span>
+            <span><i class="fa-brands fa-react text-cyan-400"></i> React</span>
+            <span><i class="fa-brands fa-node text-green-500"></i> Node.js</span>
+            <span><i class="fa-solid fa-wind text-cyan-300"></i> Tailwind</span>
+            <span><i class="fa-solid fa-pen-nib text-purple-500"></i> Logo Design</span>
+            <span><i class="fa-brands fa-figma text-red-400"></i> UI/UX</span>
+            <span><i class="fa-brands fa-html5 text-orange-500"></i> HTML</span>
+            <span><i class="fa-brands fa-css3-alt text-blue-500"></i> CSS</span>
+            <span><i class="fa-brands fa-js text-yellow-400"></i> JavaScript</span>
+            <span><i class="fa-brands fa-react text-cyan-400"></i> React</span>
+            <span><i class="fa-brands fa-node text-green-500"></i> Node.js</span>
+            <span><i class="fa-solid fa-wind text-cyan-300"></i> Tailwind</span>
+            <span><i class="fa-solid fa-pen-nib text-purple-500"></i> Logo Design</span>
+            <span><i class="fa-brands fa-figma text-red-400"></i> UI/UX</span>
+        </div>
+    </section>
+
+    <section id="work" class="py-24 bg-card">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-bold mb-12 text-center">Featured <span class="text-gold">Intelligence.</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <div class="bg-dark border border-white/10 rounded-2xl overflow-hidden hover:border-blue-500 transition duration-500 group flex flex-col">
+                    <div class="p-6 flex flex-col h-full">
+                      <div class="mb-6 w-16 h-16 rounded-2xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-900/50 group-hover:scale-110 transition duration-500">
+    <i class="fa-solid fa-shield-halved text-3xl text-white"></i>
+</div>
+                        <h3 class="text-xl font-bold mb-2">Digital Sentinel</h3>
+                        <p class="text-gray-400 text-xs mb-4 flex-1">Military-grade tracking & security dashboard.</p>
+                        <a href="sentinel.html" class="w-full py-2 bg-blue-600/10 text-blue-500 rounded-lg text-sm font-bold text-center hover:bg-blue-600 hover:text-white transition">Launch App</a>
+                    </div>
+                </div>
+
+                <div class="bg-dark border border-white/10 rounded-2xl overflow-hidden hover:border-purple-500 transition duration-500 group flex flex-col">
+                    <div class="p-6 flex flex-col h-full">
+                       <div class="mb-6 w-16 h-16 rounded-2xl bg-purple-600 flex items-center justify-center shadow-lg shadow-purple-900/50 group-hover:scale-110 transition duration-500">
+    <i class="fa-solid fa-gift text-3xl text-white"></i>
+</div>
+                        <h3 class="text-xl font-bold mb-2">3D Birthday Gift</h3>
+                        <p class="text-gray-400 text-xs mb-4 flex-1">Interactive 3D celebration with audio API.</p>
+                        <a href="birthday.html" class="w-full py-2 bg-purple-600/10 text-purple-500 rounded-lg text-sm font-bold text-center hover:bg-purple-600 hover:text-white transition">View Demo</a>
+                    </div>
+                </div>
+
+                <div class="bg-dark border border-white/10 rounded-2xl overflow-hidden hover:border-green-500 transition duration-500 group flex flex-col relative">
+                    <div class="absolute top-3 right-3 bg-green-600 text-[9px] font-bold px-2 py-0.5 rounded text-white">B2B</div>
+                    <div class="p-6 flex flex-col h-full">
+                       <div class="mb-6 w-16 h-16 rounded-2xl bg-green-600 flex items-center justify-center shadow-lg shadow-green-900/50 group-hover:scale-110 transition duration-500">
+    <i class="fa-regular fa-address-card text-3xl text-white"></i>
+</div>
+                        <h3 class="text-xl font-bold mb-2">Smart vCard</h3>
+                        <p class="text-gray-400 text-xs mb-4 flex-1">Digital profiles for Doctors & CEOs.</p>
+                        <a href="card.html" class="w-full py-2 bg-green-600/10 text-green-500 rounded-lg text-sm font-bold text-center hover:bg-green-600 hover:text-white transition">View Profile</a>
+                    </div>
+                </div>
+
+                <div class="bg-dark border border-white/10 rounded-2xl overflow-hidden hover:border-yellow-500 transition duration-500 group flex flex-col relative">
+                    <div class="absolute top-3 right-3 bg-yellow-500 text-[9px] font-bold px-2 py-0.5 rounded text-black">DESIGN</div>
+                    <div class="p-6 flex flex-col h-full">
+                       <div class="mb-6 w-16 h-16 rounded-2xl bg-yellow-500 flex items-center justify-center shadow-lg shadow-yellow-900/50 group-hover:scale-110 transition duration-500">
+    <i class="fa-solid fa-pen-nib text-3xl text-black"></i>
+</div>
+                        <h3 class="text-xl font-bold mb-2">Brand Identity</h3>
+                        <p class="text-gray-400 text-xs mb-4 flex-1">Collection of modern logo concepts.</p>
+                        <a href="logos.html" class="w-full py-2 bg-yellow-600/10 text-yellow-500 rounded-lg text-sm font-bold text-center hover:bg-yellow-600 hover:text-white transition">Open Gallery</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="py-24">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-12">Client Success Stories</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass-stat p-8 rounded-2xl text-left">
+                    <div class="flex text-gold mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-gray-300 italic mb-6">"Mustafa delivered our dashboard in record time. The design is sleek and the code is super clean."</p>
+                    <p class="text-sm font-bold text-white">John Doe, <span class="text-gray-500">CEO TechStart</span></p>
+                </div>
+                <div class="glass-stat p-8 rounded-2xl text-left">
+                    <div class="flex text-gold mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-gray-300 italic mb-6">"I got so many compliments on my digital business card. It makes networking so much easier."</p>
+                    <p class="text-sm font-bold text-white">Dr. Sarah Ahmed, <span class="text-gray-500">Cardiologist</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+	<section class="py-24 bg-dark relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1),transparent_70%)]"></div>
+
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <h2 class="text-3xl md:text-5xl font-bold mb-16 text-center">How We <span class="text-blue-500">Collaborate.</span></h2>
+
+            <div class="grid md:grid-cols-3 gap-8 relative">
+                <div class="hidden md:block absolute top-12 left-0 w-full h-1 bg-gradient-to-r from-blue-900 via-blue-500 to-blue-900 -z-10 opacity-30"></div>
+
+                <div class="bg-card border border-white/10 p-8 rounded-2xl relative hover:-translate-y-2 transition duration-300">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-2xl font-bold text-white mb-6 border-4 border-dark shadow-[0_0_20px_rgba(37,99,235,0.5)] mx-auto md:mx-0">1</div>
+                    <h3 class="text-xl font-bold mb-3">Discovery & Strategy</h3>
+                    <p class="text-gray-400 text-sm">We don't just design; we listen. I analyze your business goals, competitors, and target audience to build a roadmap for success.</p>
+                </div>
+
+                <div class="bg-card border border-white/10 p-8 rounded-2xl relative hover:-translate-y-2 transition duration-300">
+                    <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center text-2xl font-bold text-white mb-6 border-4 border-dark shadow-[0_0_20px_rgba(147,51,234,0.5)] mx-auto md:mx-0">2</div>
+                    <h3 class="text-xl font-bold mb-3">Design & Develop</h3>
+                    <p class="text-gray-400 text-sm">I build your digital product using high-speed code (React/Tailwind). You get regular updates and live previews throughout the process.</p>
+                </div>
+
+                <div class="bg-card border border-white/10 p-8 rounded-2xl relative hover:-translate-y-2 transition duration-300">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center text-2xl font-bold text-black mb-6 border-4 border-dark shadow-[0_0_20px_rgba(255,215,0,0.5)] mx-auto md:mx-0">3</div>
+                    <h3 class="text-xl font-bold mb-3">Launch & Growth</h3>
+                    <p class="text-gray-400 text-sm">We go live! I ensure your site is secure, fast, and SEO-ready. I also provide a guide on how to manage your new digital asset.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-card border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-bold mb-12 text-center">Frequently Asked <span class="text-gold">Questions.</span></h2>
+
+            <div class="space-y-4">
+                
+                <details class="group bg-dark border border-white/5 rounded-2xl overflow-hidden cursor-pointer open:border-gold/30 transition">
+                    <summary class="flex justify-between items-center p-6 font-bold text-lg text-white select-none">
+                        Do you take upfront payment?
+                        <i class="fa-solid fa-chevron-down group-open:rotate-180 transition text-gold"></i>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+                        Yes. To maintain a professional commitment from both sides, I require a <strong>25% deposit</strong> to secure your slot in my schedule. The remaining 75% is paid upon project completion and satisfaction.
+                    </div>
+                </details>
+
+                <details class="group bg-dark border border-white/5 rounded-2xl overflow-hidden cursor-pointer open:border-gold/30 transition">
+                    <summary class="flex justify-between items-center p-6 font-bold text-lg text-white select-none">
+                        Will my website work on mobile phones?
+                        <i class="fa-solid fa-chevron-down group-open:rotate-180 transition text-gold"></i>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+                        Absolutely. I follow a "Mobile-First" approach. Your website will look stunning and function perfectly on iPhones, Androids, Tablets, and Desktops.
+                    </div>
+                </details>
+
+                <details class="group bg-dark border border-white/5 rounded-2xl overflow-hidden cursor-pointer open:border-gold/30 transition">
+                    <summary class="flex justify-between items-center p-6 font-bold text-lg text-white select-none">
+                        Do you provide the source code?
+                        <i class="fa-solid fa-chevron-down group-open:rotate-180 transition text-gold"></i>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+                        Yes! Unlike drag-and-drop builders, I write clean, custom code. Once the project is paid for, you own 100% of the files, code, and assets.
+                    </div>
+                </details>
+
+                <details class="group bg-dark border border-white/5 rounded-2xl overflow-hidden cursor-pointer open:border-gold/30 transition">
+                    <summary class="flex justify-between items-center p-6 font-bold text-lg text-white select-none">
+                        I need a Logo and a Website. Can you do both?
+                        <i class="fa-solid fa-chevron-down group-open:rotate-180 transition text-gold"></i>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+                        Yes, I specialize in <strong>Full Brand Identity</strong>. I can design your logo, business cards, and website to ensure your brand looks consistent and premium everywhere.
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+    
+
+    <script>
+        var typed = new Typed('#typing-text', {
+            strings: ['Empires.', 'Brands.', 'Solutions.', 'Futures.'],
+            typeSpeed: 50,
+            backSpeed: 30,
+            loop: true
+        });
+    </script>
+	
+	<footer class="bg-black text-white pt-20 pb-10 border-t border-white/10 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+            
+            <div class="space-y-6">
+                <h2 class="text-2xl font-bold tracking-tighter uppercase">SM Digital Solutions</h2>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Your digital transformation starts here. We build premium websites, secure dashboards, and iconic brands for businesses worldwide.
+                </p>
+                
+                <div class="pt-4">
+                    <h3 class="text-white font-bold text-md mb-2">Crafted by the Developer</h3>
+                    <p class="text-gray-500 text-sm">
+                        Designed & coded with <i class="fa-solid fa-heart text-red-600 animate-pulse"></i> by 
+                        <span class="text-gold font-bold underline decoration-white/20 underline-offset-4">Syed Mustafa Ali</span>
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-lg font-bold mb-6">Quick Links</h3>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li><a href="#about" class="hover:text-gold transition">About Us</a></li>
+                    <li><a href="#work" class="hover:text-gold transition">Portfolio</a></li>
+                    <li><a href="#reviews" class="hover:text-gold transition">Client Reviews</a></li>
+		    <li><a href="privacy.html" class="hover:text-gold transition">Privacy Policy</a></li>	
+		    <li><a href="terms.html" class="hover:text-gold transition">Terms & Conditions</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-lg font-bold mb-6">Services</h3>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li><a href="logos.html" class="hover:text-gold transition">Logo Design</a></li>
+                    <li><a href="menu.html" class="hover:text-gold transition">Digital Menu</a></li>
+                    <li><a href="card.html" class="hover:text-gold transition">Smart Business Cards</a></li>
+                    <li><a href="sentinel.html" class="hover:text-gold transition">Security Dashboards</a></li>
+                    <li><a href="#" class="hover:text-gold transition">Web Development</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-lg font-bold mb-6">Follow Us</h3>
+                <div class="flex gap-4 mb-8">
+                    <a href="https://wa.me/923188249638" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#25D366] hover:text-white transition group">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                    </a>
+                    <a href="https://www.facebook.com/SMDigitalSolutionsPK" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#1877F2] hover:text-white transition group">
+                        <i class="fa-brands fa-facebook-f text-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-pink-600 hover:text-white transition group">
+                        <i class="fa-brands fa-instagram text-lg"></i>
+                    </a>
+                </div>
+
+                <h3 class="text-lg font-bold mb-4">Get in Touch</h3>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li class="flex items-center gap-3 group">
+                        <i class="fa-solid fa-envelope text-gold group-hover:scale-110 transition"></i>
+                        <a href="mailto:smdigitalsolutionspk@gmail.com" class="hover:text-white transition">smdigitalsolutionspk@gmail.com</a>
+                    </li>
+                    <li class="flex items-center gap-3 group">
+                        <i class="fa-solid fa-phone text-gold group-hover:scale-110 transition"></i>
+                        <span class="hover:text-white transition">+92 318 8249638</span>
+                    </li>
+                    <li class="flex items-center gap-3 group">
+                        <i class="fa-solid fa-location-dot text-gold group-hover:scale-110 transition"></i>
+                        <span class="hover:text-white transition">Johar, Karachi, Pakistan</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600">
+            <p>© 2025 SM Digital Solutions. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a href="privacy.html" class="hover:text-white transition">Privacy Policy</a>	
+		 <a href="terms.html" class="hover:text-white transition">Terms</a>
+                <a href="#" class="hover:text-gray-400">Sitemap</a>
+            </div>
+        </div>
+
+        <a href="#" class="fixed bottom-6 left-6 bg-white/10 hover:bg-gold hover:text-black text-white w-12 h-12 rounded-full flex items-center justify-center transition shadow-lg z-50 backdrop-blur-md border border-white/10">
+            <i class="fa-solid fa-arrow-up"></i>
+        </a>
+    </footer>
+</body>
+</html>

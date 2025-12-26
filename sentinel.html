@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Sentinel</title>
+	<link rel="icon" type="image/jpeg" href="images/sentinel.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+                    colors: {
+                        dark: '#0B0F19',
+                        panel: '#151b2b',
+                        accent: '#3B82F6', 
+                        danger: '#EF4444',
+                        success: '#10B981'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0B0F19; color: #e2e8f0; }
+        .glass-panel { background: rgba(21, 27, 43, 0.7); border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(10px); }
+        .nav-active { background-color: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.3); color: #3B82F6; }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0B0F19; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+
+    <aside class="w-64 bg-panel border-r border-white/5 hidden md:flex flex-col justify-between">
+        <div>
+            <div class="p-6 flex items-center gap-3 border-b border-white/5">
+                <i class="fa-solid fa-shield-halved text-accent text-2xl"></i>
+                <div>
+                    <h1 class="font-bold text-white tracking-tight">DIGITAL SENTINEL</h1>
+                    <p class="text-xs text-gray-500">v3.0.1 // ONLINE</p>
+                </div>
+            </div>
+            <nav class="mt-6 px-4 space-y-1">
+                <a href="#sentinel" id="nav-sentinel" class="nav-item flex items-center gap-3 px-4 py-3 text-gray-400 rounded-lg border border-transparent hover:text-white hover:bg-white/5 transition nav-active">
+                    <i class="fa-solid fa-radar"></i> I. The Sentinel
+                </a>
+                <a href="#shield" id="nav-shield" class="nav-item flex items-center gap-3 px-4 py-3 text-gray-400 rounded-lg border border-transparent hover:text-white hover:bg-white/5 transition">
+                    <i class="fa-solid fa-lock"></i> II. The Shield
+                </a>
+                <a href="#command" id="nav-command" class="nav-item flex items-center gap-3 px-4 py-3 text-gray-400 rounded-lg border border-transparent hover:text-white hover:bg-white/5 transition">
+                    <i class="fa-solid fa-satellite-dish"></i> III. Command Center
+                </a>
+                <a href="#ghost" id="nav-ghost" class="nav-item flex items-center gap-3 px-4 py-3 text-gray-400 rounded-lg border border-transparent hover:text-white hover:bg-white/5 transition">
+                    <i class="fa-solid fa-ghost"></i> IV. Ghost Protocol
+                </a>
+            </nav>
+        </div>
+        <a href="index.html" class="p-4 border-t border-white/5 text-center text-sm text-gray-500 hover:text-white transition">
+            <i class="fa-solid fa-arrow-left mr-2"></i> Back to Portfolio
+        </a>
+    </aside>
+
+    <main class="flex-1 overflow-y-auto relative scroll-smooth" id="main-content">
+        
+        <header class="sticky top-0 z-20 bg-dark/90 backdrop-blur-md border-b border-white/5 px-8 py-4 flex justify-between items-center">
+            <h2 class="text-xl font-bold text-white">Your Personal Security Command Center</h2>
+            <div class="flex items-center gap-4 text-xs font-mono">
+                <span class="flex items-center gap-2 text-success"><span class="w-2 h-2 rounded-full bg-success animate-pulse"></span> SYSTEM ARMED</span>
+            </div>
+        </header>
+
+        <div class="p-8 space-y-24 max-w-6xl mx-auto pb-40">
+
+            <section id="sentinel" class="scroll-section">
+                <div class="mb-6">
+                    <h3 class="text-2xl font-bold text-white mb-2">I. The Sentinel</h3>
+                    <p class="text-gray-400 text-sm">Real-time activity logging. Logs will appear here when you perform actions.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="glass-panel rounded-xl p-6 border-l-4 border-accent h-80 flex flex-col">
+                        <h4 class="font-bold text-white mb-4 flex justify-between">
+                            <span>Command Log</span>
+                            <span class="text-xs font-mono text-gray-500">WAITING FOR INPUT...</span>
+                        </h4>
+                        <div id="activity-log" class="font-mono text-xs flex-1 overflow-y-auto space-y-2 text-gray-300 pr-2">
+                            <div class="text-gray-600 italic">No recent actions detected.</div>
+                        </div>
+                    </div>
+                    <div class="glass-panel rounded-xl p-6 h-80">
+                        <h4 class="font-bold text-white mb-4">Threat Analysis</h4>
+                        <div class="h-64">
+                            <canvas id="alertsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="shield" class="scroll-section">
+                <div class="mb-6">
+                    <h3 class="text-2xl font-bold text-white mb-2">II. The Shield</h3>
+                    <p class="text-gray-400 text-sm">Click a button to execute a remote command and update the log.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <button onclick="triggerAction('LOCK')" class="p-6 glass-panel rounded-xl hover:bg-accent/10 hover:border-accent/50 transition group text-center active:scale-95">
+                        <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition text-2xl">🔒</div>
+                        <h4 class="font-bold text-white">Remote Lock</h4>
+                        <p class="text-xs text-gray-500 mt-1">Force Password</p>
+                    </button>
+                    
+                    <button onclick="triggerAction('ALARM')" class="p-6 glass-panel rounded-xl hover:bg-yellow-500/10 hover:border-yellow-500/50 transition group text-center active:scale-95">
+                        <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition text-2xl">🔊</div>
+                        <h4 class="font-bold text-white">Sound Alarm</h4>
+                        <p class="text-xs text-gray-500 mt-1">Play at 100% Vol</p>
+                    </button>
+                    
+                    <button onclick="triggerAction('MESSAGE')" class="p-6 glass-panel rounded-xl hover:bg-blue-500/10 hover:border-blue-500/50 transition group text-center active:scale-95">
+                        <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition text-2xl">💬</div>
+                        <h4 class="font-bold text-white">Send Message</h4>
+                        <p class="text-xs text-gray-500 mt-1">Display on Screen</p>
+                    </button>
+                    
+                    <button onclick="confirmWipe()" class="p-6 glass-panel rounded-xl hover:bg-danger/10 hover:border-danger/50 transition group text-center border-danger/20 active:scale-95">
+                        <div class="w-12 h-12 bg-danger/10 text-danger rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition text-2xl">💥</div>
+                        <h4 class="font-bold text-danger">WIPE DATA</h4>
+                        <p class="text-xs text-danger/70 mt-1">Factory Reset</p>
+                    </button>
+                </div>
+            </section>
+
+            <section id="command" class="scroll-section">
+                <div class="mb-6">
+                    <h3 class="text-2xl font-bold text-white mb-2">III. The Command Center</h3>
+                    <p class="text-gray-400 text-sm">Real-time screen streaming and remote control.</p>
+                </div>
+                
+                <div class="glass-panel rounded-xl p-2 max-w-3xl mx-auto">
+                    <div class="aspect-video bg-black rounded-lg flex flex-col items-center justify-center relative overflow-hidden border border-white/10">
+                        <div class="text-center z-10">
+                            <i class="fa-solid fa-satellite-dish text-5xl text-gray-700 mb-4 animate-pulse"></i>
+                            <h4 class="text-gray-400 font-mono">ESTABLISHING SECURE LINK...</h4>
+                            <p class="text-xs text-gray-600 mt-2">End-to-End Encrypted // <span class="text-success">Connected</span></p>
+                        </div>
+                        <div class="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.5)_50%)] bg-[length:100%_4px] pointer-events-none opacity-20"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ghost" class="scroll-section">
+                <div class="glass-panel rounded-xl p-8 border border-white/10 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
+                        <i class="fa-solid fa-ghost text-9xl"></i>
+                    </div>
+                    
+                    <div class="relative z-10 text-center max-w-2xl mx-auto">
+                        <h3 class="text-3xl font-bold text-white mb-4">IV. The Ghost Protocol</h3>
+                        <p class="text-gray-400 mb-8">
+                            Activate "Phantom Mode" to turn the physical device screen <strong>black</strong> while maintaining full remote access.
+                        </p>
+                        
+                        <div class="flex flex-col md:flex-row items-center justify-center gap-12 bg-dark/50 p-8 rounded-xl border border-white/5">
+                            <div class="text-center">
+                                <p class="text-xs text-gray-500 mb-2 font-mono">PHYSICAL DEVICE STATE</p>
+                                <div id="phone-screen" class="w-32 h-64 border-4 border-gray-700 rounded-2xl bg-gray-800 mx-auto flex items-center justify-center transition-all duration-500 shadow-xl">
+                                    <div id="phone-content" class="text-center">
+                                        <i class="fa-brands fa-android text-4xl text-white/20"></i>
+                                        <p class="text-[10px] text-white/30 mt-2">Screen ON</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col items-center">
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="phantom-toggle" class="sr-only peer">
+                                    <div class="w-16 h-8 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-accent"></div>
+                                </label>
+                                <span class="text-xs font-bold text-white mt-3">ACTIVATE GHOST MODE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        // 1. SMART LOGGING SYSTEM (Only updates on clicks)
+        const activityLogEl = document.getElementById('activity-log');
+        let isFirstLog = true;
+
+        function triggerAction(actionType) {
+            // Remove the "No recent actions" text if it's the first click
+            if(isFirstLog) {
+                activityLogEl.innerHTML = '';
+                isFirstLog = false;
+            }
+
+            let msg = "";
+            let color = "text-white";
+
+            if(actionType === 'LOCK') { msg = "Command sent: DEVICE LOCKED."; color = "text-accent"; }
+            else if(actionType === 'ALARM') { msg = "Command sent: ALARM TRIGGERED (100% Vol)."; color = "text-yellow-500"; }
+            else if(actionType === 'MESSAGE') { msg = "Message displayed on target screen."; color = "text-blue-400"; }
+            else if(actionType === 'WIPE') { msg = "CRITICAL: FACTORY RESET INITIATED."; color = "text-danger"; }
+            else if(actionType === 'GHOST_ON') { msg = "Ghost Protocol: ACTIVATED."; color = "text-gray-400"; }
+            else if(actionType === 'GHOST_OFF') { msg = "Ghost Protocol: DEACTIVATED."; color = "text-white"; }
+
+            const div = document.createElement('div');
+            div.className = "mb-1 border-b border-white/5 pb-1 animate-pulse";
+            div.innerHTML = `<span class="opacity-40">[${new Date().toLocaleTimeString('en-US',{hour12:false})}]</span> <span class="${color} font-bold tracking-wide">${msg}</span>`;
+            
+            activityLogEl.prepend(div); // Add to top
+        }
+
+        // 2. WIPE DATA CONFIRMATION
+        function confirmWipe() {
+            if(confirm("⚠️ WARNING: This will permanently erase ALL data on the target device.\n\nAre you sure you want to proceed?")) {
+                triggerAction('WIPE');
+            }
+        }
+
+        // 3. GHOST PROTOCOL TOGGLE
+        const toggle = document.getElementById('phantom-toggle');
+        const screen = document.getElementById('phone-screen');
+        const content = document.getElementById('phone-content');
+
+        toggle.addEventListener('change', (e) => {
+            if(e.target.checked) {
+                screen.classList.replace('bg-gray-800', 'bg-black');
+                screen.classList.add('border-gray-900');
+                content.classList.add('opacity-0');
+                triggerAction('GHOST_ON');
+            } else {
+                screen.classList.replace('bg-black', 'bg-gray-800');
+                screen.classList.remove('border-gray-900');
+                content.classList.remove('opacity-0');
+                triggerAction('GHOST_OFF');
+            }
+        });
+
+        // 4. CHART (Static Data for visuals)
+        const ctx = document.getElementById('alertsChart');
+        if (ctx) {
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Failed Auth', 'USB', 'App Access', 'Geofence'],
+                    datasets: [{
+                        label: 'Incidents',
+                        data: [12, 5, 22, 8],
+                        backgroundColor: ['#EF4444', '#F59E0B', '#3B82F6', '#8B5CF6'],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#888' } },
+                        x: { grid: { display: false }, ticks: { color: '#888' } }
+                    }
+                }
+            });
+        }
+
+        // 5. SIDEBAR NAVIGATION HIGHLIGHTER (Fixes "Showing 1 when on Shield")
+        const sections = document.querySelectorAll('.scroll-section');
+        const navItems = document.querySelectorAll('.nav-item');
+        const mainContent = document.getElementById('main-content');
+
+        mainContent.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (mainContent.scrollTop >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(li => {
+                li.classList.remove('nav-active');
+                li.classList.replace('bg-accent/10', 'bg-transparent');
+                li.classList.replace('text-accent', 'text-gray-400');
+                li.classList.replace('border-accent/20', 'border-transparent');
+                
+                if (li.getAttribute('href').includes(current)) {
+                    li.classList.add('nav-active');
+                    li.classList.replace('bg-transparent', 'bg-accent/10');
+                    li.classList.replace('text-gray-400', 'text-accent');
+                    li.classList.replace('border-transparent', 'border-accent/20');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
